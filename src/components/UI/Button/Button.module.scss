@@ -1,0 +1,32 @@
+.button {
+	font: inherit;
+	color: #201d0f;
+	border-radius: 4px;
+	cursor: pointer;
+	margin: 0 0 0 auto;
+	background-color: #ebb002;
+	border: 1px solid #ebb002;
+	display: block;
+}
+
+.big {
+	padding: 0.5rem 1.5rem;
+}
+
+.small {
+	padding: 0.2rem 0.5rem;
+}
+
+.remove {
+	padding: 0.2rem 0.5rem;
+	background-color: #eb025d;
+	border: 1px solid #eb025d;
+	line-height: 1.3;
+	color: #fff;
+}
+
+.button:hover,
+.button:active {
+	background-color: #ebc002;
+	border-color: #ebc002;
+}
