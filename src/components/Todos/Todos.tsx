@@ -12,9 +12,9 @@ const Todos: React.FC = () => {
 					key={item.id}
 					text={item.text}
 					done={item.done}
-					onRemoveTodo={todosCtx.removeTodo.bind(null, item.id)}
-					onDoneTodo={todosCtx.doneTodo.bind(null, item.id)}
-					onEditTodo={todosCtx.editTodo.bind(null, item.id)}
+					onRemoveTodo={() => todosCtx.removeTodo(item.id)}
+					onDoneTodo={() => todosCtx.doneTodo(item.id)}
+					onEditTodo={() => todosCtx.editTodo(item.id)}
 				/>
 			))}
 		</ul>

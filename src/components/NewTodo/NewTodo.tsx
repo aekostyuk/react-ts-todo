@@ -1,26 +1,37 @@
 import classes from "./NewTodo.module.scss";
-import { useRef, useContext } from "react";
+import { useState, useContext } from "react";
 import { TodosContext } from "../../store/todos-context";
 import Input from "../UI/Input/Input";
 import Button from "../UI/Button/Button";
 
 const NewTodo: React.FC = () => {
 	const todosCtx = useContext(TodosContext);
-	const todoTextInputRef = useRef<HTMLInputElement>(null);
+	const [inputText, setInputText] = useState<string>("");
 
 	const submitHandler = (event: React.FormEvent) => {
 		event.preventDefault();
 
-		const enteredText = todoTextInputRef.current!.value;
+		const enteredText = inputText;
 
 		if (enteredText.trim().length === 0) return;
 
 		todosCtx.addTodo(enteredText);
+		setInputText("");
+	};
+
+	const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+		setInputText(event.target.value);
 	};
 
 	return (
 		<form className={classes.form} onSubmit={submitHandler}>
-			<Input label="Todo text" type="text" id="text" ref={todoTextInputRef} />
+			<Input
+				label="Todo text"
+				type="text"
+				id="text"
+				value={inputText}
+				onChangeHandler={onChangeHandler}
+			/>
 			<Button styling="big">Add Todo</Button>
 		</form>
 	);

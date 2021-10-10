@@ -1,32 +1,43 @@
 import classes from "./Modal.module.scss";
-import { useRef, useContext } from "react";
+import { useContext } from "react";
 import { TodosContext } from "../../store/todos-context";
 import Input from "../UI/Input/Input";
 import Button from "../UI/Button/Button";
 
-const Modal = () => {
+const Modal: React.FC = () => {
 	const todosCtx = useContext(TodosContext);
-	const todoTextInputRef = useRef<HTMLInputElement>(null);
-	console.log(todosCtx);
+	//const [inputText, setInputText] = useState<string>("");
 
 	const cls = [classes.modal];
-	if (todosCtx.modal) cls.push(classes.active);
+	let modal = null;
 
-	return (
-		<div className={cls.join(" ")} onClick={() => todosCtx.toggleModal}>
-			<div className={classes["modal-content"]}>
-				<form className={classes.form}>
-					<Input
-						type="text"
-						label="Todo text"
-						id="edit"
-						ref={todoTextInputRef}
-					/>
-					<Button styling="big">Save Todo</Button>
-				</form>
+	if (todosCtx.modal) {
+		cls.push(classes.active);
+		modal = (
+			<div className={cls.join(" ")}>
+				<div className={classes["modal-content"]}>
+					<span
+						className={classes["modal-close"]}
+						onClick={(e) => todosCtx.toggleModal(e)}
+					>
+						close
+					</span>
+					<form className={classes.form} onSubmit={todosCtx.onSubmitModal}>
+						<Input
+							type="text"
+							label="Todo text"
+							id="edit"
+							value={todosCtx.modalText}
+							onChangeHandler={todosCtx.onChangeModalText}
+						/>
+						<Button styling="big">Save Todo</Button>
+					</form>
+				</div>
 			</div>
-		</div>
-	);
+		);
+	}
+
+	return modal;
 };
 
 export default Modal;

@@ -21,4 +21,12 @@
 	padding: 20px;
 	border-radius: 12px;
 	background-color: #fff;
+	position: relative;
+}
+
+.modal-close {
+	position: absolute;
+	right: 5px;
+	top: 3px;
+	cursor: pointer;
 }
