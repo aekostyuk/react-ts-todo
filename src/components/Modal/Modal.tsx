@@ -6,7 +6,6 @@ import Button from "../UI/Button/Button";
 
 const Modal: React.FC = () => {
 	const todosCtx = useContext(TodosContext);
-	//const [inputText, setInputText] = useState<string>("");
 
 	const cls = [classes.modal];
 	let modal = null;
